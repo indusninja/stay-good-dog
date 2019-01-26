@@ -51,7 +51,7 @@ public class DogController : MonoBehaviour
     {
         m_MovX = Input.GetAxisRaw("Horizontal");
         m_MovY = Input.GetAxisRaw("Vertical");
-        Debug.Log(m_MovX);
+        //Debug.Log(m_MovX);
 
         m_moveHorizontal = transform.right * m_MovX;
         m_movVertical = transform.forward * m_MovY;
