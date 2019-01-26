@@ -117,8 +117,8 @@ public class DogController : MonoBehaviour
         // otherwise, tell the sound manager that the player stopped
         if (SoundManagerInstance != null)
         {
-            if (Rotation.magnitude > 0.01f ||
-                Velocity.magnitude > 0.1f)
+            if (/*Rotation.magnitude > 0.01f ||*/
+                Velocity.magnitude > 0.01f)
             {
                 RaycastHit hit;
                 Material m_Material = null;
