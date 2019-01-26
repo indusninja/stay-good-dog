@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5203018077165643755}
   - component: {fileID: 5203018077165643752}
   - component: {fileID: 2728097305227517319}
+  - component: {fileID: 932301142261018618}
   m_Layer: 0
   m_Name: ThisIsTheDog
   m_TagString: Untagged
@@ -142,6 +143,20 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: 0
+--- !u!114 &932301142261018618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5203018077165643753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74955ce3e9bb9422cba0bde15b880889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTranform: {fileID: 5203018077197980861}
+  reachLenght: 2
 --- !u!1 &5203018077197980864
 GameObject:
   m_ObjectHideFlags: 0
