@@ -19,11 +19,11 @@ public class ItemController : MonoBehaviour
 
     void Awake()
     {
-        ItemHighlighter highlighter = gameObject.GetComponent<ItemHighlighter>();
-        if(highlighter == null)
-        {
-            gameObject.AddComponent<ItemHighlighter>();
-        }
+        Highlightable highlighter = gameObject.GetComponent<Highlightable>();
+        //if (highlighter == null)
+        //{
+        //    gameObject.AddComponent<ItemHighlighter>();
+        //}
     }
 
     public void SniffItem()
@@ -31,7 +31,7 @@ public class ItemController : MonoBehaviour
         Debug.Log("Sniffed " + this.gameObject.name);
         foreach (ItemController item in connectedItems)
         {
-            item.gameObject.GetComponent<ItemHighlighter>().HighlightNextNSeconds(6f);
+            item.gameObject.GetComponent<Highlightable>().HighlightForNSeconds(6f);
         }
     }
 
@@ -91,6 +91,10 @@ public class ItemController : MonoBehaviour
      */
     void RenderDebugLines()
     {
+        if(connectedItems == null)
+        {
+            return;
+        }
         if (propergateSelection)
         {
             for (var i = 0; i < connectedItems.Length; i++)

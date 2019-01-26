@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemHighlighter : MonoBehaviour
+public class ItemHighlighter : Highlightable
 {
 
     private float disableInSeconds = 0;
@@ -15,9 +15,10 @@ public class ItemHighlighter : MonoBehaviour
             gameObject.layer = 0; // Default layer
         }
     }
-    public void HighlightNextNSeconds(float s)
+
+    public override void HighlightForNSeconds(float seconds)
     {
         gameObject.layer = 11;  // NoPost layer
-        disableInSeconds = s;
+        disableInSeconds = seconds;
     }
 }

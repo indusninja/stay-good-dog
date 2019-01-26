@@ -9,17 +9,12 @@ public class ItemRaycaster : MonoBehaviour
     [Header("How far can the dog reach things")]
     public float reachLenght = 1f;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
         ItemController item = GetItemInRange();
         if (item != null)
         {
-            item.gameObject.GetComponent<ItemHighlighter>().HighlightNextNSeconds(Time.deltaTime * 2f);
+            item.gameObject.GetComponent<ItemHighlighter>().HighlightForNSeconds(Time.deltaTime * 2f);
             if (Input.GetMouseButtonDown(0))
             {
                 item.SniffItem();
