@@ -19,7 +19,7 @@ public class ItemRaycaster : MonoBehaviour
         ItemController item = GetItemInRange();
         if (item != null)
         {
-            item.gameObject.GetComponent<ItemOutline>().DrawOutlineNextSeconds(Time.deltaTime * 2f);
+            item.gameObject.GetComponent<ItemHighlighter>().HighlightNextNSeconds(Time.deltaTime * 2f);
             if (Input.GetMouseButtonDown(0))
             {
                 item.SniffItem();
