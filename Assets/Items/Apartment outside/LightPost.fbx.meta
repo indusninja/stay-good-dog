@@ -1,14 +1,21 @@
 fileFormatVersion: 2
-guid: 48bb8a7a4491b004a82ab1591edcac05
+guid: 0a31d07e47bf0c444a84a401e92fe988
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: No Name
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Platonic_30
+    100000: Light
+    100002: //RootNode
+    100004: Post
+    400000: Light
+    400002: //RootNode
+    400004: Post
+    2100000: lambert1
+    2300000: Light
+    2300002: Post
+    3300000: Light
+    3300002: Post
+    4300000: Post
+    4300002: Light
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -40,7 +47,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.5
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
