@@ -15,7 +15,7 @@ using UnityEngine;
 public class DogController : MonoBehaviour
 {
 
-    private float speed = 5.0f;
+    private float speed = 8.0f;
     private float m_MovX;
     private float m_MovY;
     private Vector3 m_moveHorizontal;

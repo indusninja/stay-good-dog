@@ -12,7 +12,7 @@ public class ItemController : MonoBehaviour
         Debug.Log("Sniffed " + this.gameObject.name);
         foreach(ItemController item in connectedItems)
         {
-            item.gameObject.GetComponent<ItemOutline>().DrawOutlineNextSeconds(5f);
+            item.gameObject.GetComponent<ItemOutline>().DrawOutlineNextSeconds(6f);
         }
     }
 
