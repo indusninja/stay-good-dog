@@ -19,12 +19,12 @@ public class ItemOutline : MonoBehaviour
         disableInSeconds = Mathf.Max(0, disableInSeconds - Time.deltaTime);
         if (disableInSeconds <= 0)
         {
-            outline.enabled = false;
+            gameObject.layer = 0;
         }
     }
     public void DrawOutlineNextSeconds(float s)
     {
-        outline.enabled = true;
+        gameObject.layer = 11;
         disableInSeconds = s;
     }
 }
