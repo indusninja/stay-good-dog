@@ -16,6 +16,7 @@ public class DogController : MonoBehaviour
 {
 
     private float speed = 50.0f;
+    private float stoppingForce = -80.0f;
     private float maxVelocity = 6.0f;
     private float m_MovX;
     private float m_MovY;
@@ -43,8 +44,9 @@ public class DogController : MonoBehaviour
     public void Update()
     {
 
-        m_MovX = Input.GetAxis("Horizontal");
-        m_MovY = Input.GetAxis("Vertical");
+        m_MovX = Input.GetAxisRaw("Horizontal");
+        m_MovY = Input.GetAxisRaw("Vertical");
+        Debug.Log(m_MovX);
 
         m_moveHorizontal = transform.right * m_MovX;
         m_movVertical = transform.forward * m_MovY;
@@ -66,6 +68,16 @@ public class DogController : MonoBehaviour
             //m_Rigid.MovePosition(m_Rigid.position + m_velocity * Time.fixedDeltaTime);
             m_Rigid.AddForce(m_velocity, ForceMode.Acceleration);
         }
+        else if(m_Rigid.velocity.magnitude > 1f)
+        {
+            Vector3 stoppingForceVector = m_Rigid.velocity.normalized * stoppingForce;
+            stoppingForceVector.y = 0;
+            m_Rigid.AddForce(stoppingForceVector);
+        }
+        else
+        {
+            m_Rigid.velocity = new Vector3(0f, m_Rigid.velocity.y, 0f);
+        }
 
         if (m_rotation != Vector3.zero)
         {
@@ -79,7 +91,7 @@ public class DogController : MonoBehaviour
             m_Camera.transform.Rotate(-m_cameraRotation);
         }
 
-        if(m_Rigid.velocity.magnitude > maxVelocity)
+        if (m_Rigid.velocity.magnitude > maxVelocity)
         {
             m_Rigid.velocity = m_Rigid.velocity.normalized * maxVelocity;
         }
