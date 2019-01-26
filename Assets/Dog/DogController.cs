@@ -14,7 +14,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class DogController : MonoBehaviour
 {
-
     private float speed = 50.0f;
     private float stoppingForce = -80.0f;
     private float maxVelocity = 6.0f;
@@ -30,6 +29,9 @@ public class DogController : MonoBehaviour
     private Vector3 m_cameraRotation;
     private float m_lookSensitivity = 3.0f;
     private bool m_cursorIsLocked = true;
+    private Vector3 previousRotation = Vector3.zero;
+
+    private SoundManager SoundManagerInstance;
 
     [Header("The Camera the player looks through")]
     public Camera m_Camera;
@@ -38,12 +40,15 @@ public class DogController : MonoBehaviour
     private void Start()
     {
         m_Rigid = GetComponent<Rigidbody>();
+        if (SoundManagerInstance == null)
+        {
+            SoundManagerInstance = GetComponentInChildren<SoundManager>();
+        }
     }
 
     // Update is called once per frame
     public void Update()
     {
-
         m_MovX = Input.GetAxisRaw("Horizontal");
         m_MovY = Input.GetAxisRaw("Vertical");
         Debug.Log(m_MovX);
@@ -61,14 +66,14 @@ public class DogController : MonoBehaviour
         m_cameraRotation = new Vector3(m_xRot, 0, 0) * m_lookSensitivity;
 
         //apply camera rotation
-
+        
         //move the actual player here
         if (m_velocity != Vector3.zero)
         {
             //m_Rigid.MovePosition(m_Rigid.position + m_velocity * Time.fixedDeltaTime);
             m_Rigid.AddForce(m_velocity, ForceMode.Acceleration);
         }
-        else if(m_Rigid.velocity.magnitude > 1f)
+        else if (m_Rigid.velocity.magnitude > 1f)
         {
             Vector3 stoppingForceVector = m_Rigid.velocity.normalized * stoppingForce;
             stoppingForceVector.y = 0;
@@ -96,8 +101,50 @@ public class DogController : MonoBehaviour
             m_Rigid.velocity = m_Rigid.velocity.normalized * maxVelocity;
         }
 
-        InternalLockUpdate();
+        SoundManagerInstance.SetCurrentWalkingSurface(
+            BroadcastMovementState(previousRotation - m_Rigid.transform.rotation.eulerAngles, m_velocity));
 
+        previousRotation = m_Rigid.transform.rotation.eulerAngles;
+
+        InternalLockUpdate();
+    }
+
+    private WalkingSurfaceTypes BroadcastMovementState(Vector3 Rotation, Vector3 Velocity)
+    {
+        float traceDistance = 10;
+
+        // if player moved or rotated, tell the surface to the sound manager
+        // otherwise, tell the sound manager that the player stopped
+        if (SoundManagerInstance != null)
+        {
+            if (Rotation.magnitude > 0.01f ||
+                Velocity.magnitude > 0.1f)
+            {
+                RaycastHit hit;
+                Material m_Material = null;
+                bool IsIndoors = false;
+                if (Physics.Raycast(transform.position, Vector3.down, out hit, traceDistance))
+                {
+                    m_Material = hit.collider.gameObject.GetComponent<Renderer>().material;
+                    if (m_Material != null &&
+                        m_Material.mainTexture != null &&
+                        m_Material.mainTexture.name.ToLower().Contains("apartment"))
+                    {
+                        IsIndoors = true;
+                    }
+                }
+                if (IsIndoors)
+                {
+                    return WalkingSurfaceTypes.InteriorFloor;
+                }
+                else
+                {
+                    return WalkingSurfaceTypes.Grass;
+                }
+            }
+        }
+
+        return WalkingSurfaceTypes.None;
     }
 
     //controls the locking and unlocking of the mouse
