@@ -14,6 +14,10 @@ public class ItemSpawner : MonoBehaviour
     private bool propergateSelection = false;
     private Color connectionColor;
 
+    void Start()
+    {
+    }
+
     private void Update()
     {
         EditorSelectionCheck();
