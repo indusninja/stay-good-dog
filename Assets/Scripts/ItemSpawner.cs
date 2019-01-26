@@ -19,25 +19,30 @@ public class ItemSpawner : MonoBehaviour
         EditorSelectionCheck();
         RenderDebugLines();
     }
-     
+
     /*
      * Check if this item is selected in editor
-     */ 
+     */
     void EditorSelectionCheck()
     {
-        if(isSelected != Selection.Contains(gameObject))
+        if (isSelected != Selection.Contains(gameObject))
         {
             isSelected = Selection.Contains(gameObject);
-            ProperateSelection(isSelected);
+            PropergateSelection(isSelected);
         }
     }
 
-    public void ProperateSelection(bool propergate)
+    public void PropergateSelection(bool propergate)
     {
-        if (propergateSelection != propergate)
+        connectionColor = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+        propergateSelection = propergate;
+
+        foreach (ItemSpawner connection in itemConnections)
         {
-            connectionColor = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);        
-            propergateSelection = propergate;
+            if (connection != null)
+            {
+                connection.PropergateSelection(propergateSelection);
+            }
         }
     }
 
@@ -46,7 +51,7 @@ public class ItemSpawner : MonoBehaviour
      */
     void RenderDebugLines()
     {
-        if(isSelected || propergateSelection)
+        if (propergateSelection)
         {
             for (var i = 0; i < itemConnections.Length; i++)
             {
@@ -54,7 +59,6 @@ public class ItemSpawner : MonoBehaviour
                 if (connection != null)
                 {
                     Debug.DrawLine(transform.position, connection.transform.position, connectionColor);
-                    connection.gameObject.SendMessage("ProperateSelection", propergateSelection);
                 }
             }
         }
