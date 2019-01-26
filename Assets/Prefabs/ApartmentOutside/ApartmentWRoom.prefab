@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1268087059}
   - component: {fileID: 1268087058}
   - component: {fileID: 1268087057}
+  - component: {fileID: 9036644533331936024}
   m_Layer: 0
   m_Name: ApartmentWRoom
   m_TagString: Untagged
@@ -77,3 +78,16 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &9036644533331936024
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268087056}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 17.084137, y: 1.5332069, z: 13.676588}
+  m_Center: {x: -0.013309479, y: 0.3862679, z: -1.6247144}
