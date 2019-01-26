@@ -15,7 +15,8 @@ using UnityEngine;
 public class DogController : MonoBehaviour
 {
 
-    private float speed = 8.0f;
+    private float speed = 50.0f;
+    private float maxVelocity = 6.0f;
     private float m_MovX;
     private float m_MovY;
     private Vector3 m_moveHorizontal;
@@ -62,7 +63,8 @@ public class DogController : MonoBehaviour
         //move the actual player here
         if (m_velocity != Vector3.zero)
         {
-            m_Rigid.MovePosition(m_Rigid.position + m_velocity * Time.fixedDeltaTime);
+            //m_Rigid.MovePosition(m_Rigid.position + m_velocity * Time.fixedDeltaTime);
+            m_Rigid.AddForce(m_velocity, ForceMode.Acceleration);
         }
 
         if (m_rotation != Vector3.zero)
@@ -75,6 +77,11 @@ public class DogController : MonoBehaviour
         {
             //negate this value so it rotates like a FPS not like a plane
             m_Camera.transform.Rotate(-m_cameraRotation);
+        }
+
+        if(m_Rigid.velocity.magnitude > maxVelocity)
+        {
+            m_Rigid.velocity = m_Rigid.velocity.normalized * maxVelocity;
         }
 
         InternalLockUpdate();
