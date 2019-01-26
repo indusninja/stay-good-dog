@@ -13,7 +13,6 @@ public class Slideshow : MonoBehaviour
     void Start()
     {
         topImageRenderer = transform.GetChild(0).GetComponent<RawImage>();
-        
         bottomImageRenderer = GetComponent<RawImage>();
         StartSlideshow();
     }
@@ -25,7 +24,6 @@ public class Slideshow : MonoBehaviour
 
     IEnumerator DoSlideshow()
     {
-        Debug.Log(slides.Length);
         for (int i = 0; i < slides.Length; i++)
         {
             bottomImageRenderer.texture = slides[i].Image;
@@ -36,15 +34,11 @@ public class Slideshow : MonoBehaviour
                 topImageRenderer.color = tempColor;
                 yield return new WaitForSeconds(0.02f);
             }
-            
-            
-
             topImageRenderer.texture = bottomImageRenderer.texture;
             topImageRenderer.color = Color.white;
             yield return new WaitForSeconds(slides[i].seconds);
         }
-    }
-    
+    }  
 }
 
 [System.Serializable]
