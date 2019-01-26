@@ -16,17 +16,20 @@ public class ItemRaycaster : MonoBehaviour
 
     void Update()
     {
-        ItemOutline item = GetItemInRange();
+        ItemController item = GetItemInRange();
         if (item != null)
         {
-            item.DrawOutlineNextFrame();
-            Debug.Log(item.gameObject.name);
+            item.gameObject.GetComponent<ItemOutline>().DrawOutlineNextSeconds(Time.deltaTime * 2f);
+            if (Input.GetMouseButtonDown(0))
+            {
+                item.SniffItem();
+            }
         }
     }
 
-    ItemOutline GetItemInRange()
+    ItemController GetItemInRange()
     {
-        // Bit shift the index of the layer (8) to get a bit mask
+        // Ignore the "ignore raycast" layer
         int layerMask = 1 << 2;
         layerMask = ~layerMask;
 
@@ -34,7 +37,7 @@ public class ItemRaycaster : MonoBehaviour
         // Does the ray intersect any objects excluding the player layer
         if (Physics.Raycast(cameraTranform.position, cameraTranform.TransformDirection(Vector3.forward), out hit, reachLenght, layerMask))
         {
-            return hit.collider.gameObject.GetComponent<ItemOutline>();
+            return hit.collider.gameObject.GetComponent<ItemController>();
         }
         else
         {

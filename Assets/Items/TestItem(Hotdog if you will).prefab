@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5347372537498265500}
   - component: {fileID: 5347372537498265503}
   - component: {fileID: 5347372537498265473}
+  - component: {fileID: 4893563937995907573}
   m_Layer: 0
   m_Name: TestItem(Hotdog if you will)
   m_TagString: Untagged
@@ -140,3 +141,16 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &4893563937995907573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5347372537498265502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b065b917cbc66843a1c0fcdddc29693, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemConnections: []

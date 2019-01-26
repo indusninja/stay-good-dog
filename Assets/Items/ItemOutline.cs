@@ -6,7 +6,7 @@ public class ItemOutline : MonoBehaviour
 {
 
     private Outline outline;
-    private int disableInFrames = 0;    // In how many frames to disable the outline
+    private float disableInSeconds = 0;
 
     void Start()
     {
@@ -16,15 +16,15 @@ public class ItemOutline : MonoBehaviour
 
     public void Update()
     {
-        disableInFrames = Mathf.Max(0, disableInFrames - 1);
-        if (disableInFrames == 0)
+        disableInSeconds = Mathf.Max(0, disableInSeconds - Time.deltaTime);
+        if (disableInSeconds <= 0)
         {
             outline.enabled = false;
         }
     }
-    public void DrawOutlineNextFrame()
+    public void DrawOutlineNextSeconds(float s)
     {
         outline.enabled = true;
-        disableInFrames = 2;
+        disableInSeconds = s;
     }
 }
