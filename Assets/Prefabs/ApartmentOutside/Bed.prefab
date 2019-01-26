@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2610741276527920044}
   - component: {fileID: 524996381130955582}
   - component: {fileID: 2941271941682983274}
+  - component: {fileID: 1652794150057470611}
   m_Layer: 0
   m_Name: Bed
   m_TagString: Untagged
@@ -77,3 +78,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &1652794150057470611
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3170500006789735598}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: e27d657aab1c86b47b93cad56cbe100c, type: 3}
