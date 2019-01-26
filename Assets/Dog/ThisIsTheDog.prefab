@@ -138,10 +138,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 73f96ce64b9e00a45b9b328be6153de8, type: 3}
   outputWalkingSource: {fileID: 6483301520549093039}
   CurrentWalkingSurface: 0
-  lowPitchRange: 0.95
-  highPitchRange: 1.05
-  lowVolumeRange: 0.9
-  highVolumeRange: 1
+  lowPitchRange: 0.75
+  highPitchRange: 0.85
+  lowVolumeRange: 0.75
+  highVolumeRange: 0.9
 --- !u!1 &3087981723744514459
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,6 +152,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6680421424519487805}
   - component: {fileID: 6483301520549093039}
+  - component: {fileID: 5272909234114910747}
+  - component: {fileID: 8717408441198276967}
   m_Layer: 0
   m_Name: Audio Source
   m_TagString: Untagged
@@ -260,6 +262,41 @@ AudioSource:
     - serializedVersion: 3
       time: 0
       value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!165 &5272909234114910747
+AudioHighPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3087981723744514459}
+  m_Enabled: 1
+  m_CutoffFrequency: 3500
+  m_HighpassResonanceQ: 1
+--- !u!169 &8717408441198276967
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3087981723744514459}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.11363637
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -573,10 +610,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 37cdec8c26e327c4790ab2f202d00f37, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 37cdec8c26e327c4790ab2f202d00f37, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -632,6 +665,10 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 37cdec8c26e327c4790ab2f202d00f37, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 37cdec8c26e327c4790ab2f202d00f37, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37cdec8c26e327c4790ab2f202d00f37, type: 3}
