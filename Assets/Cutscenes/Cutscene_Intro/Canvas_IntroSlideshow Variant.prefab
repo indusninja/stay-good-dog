@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 7306293816248597958, guid: acb60dbf32f4347bd85b0da3c55623f2,
         type: 3}
       propertyPath: m_Name
-      value: Canvas_FailStateSlideshow Variant
+      value: Canvas_IntroSlideshow Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7306293816248597967, guid: acb60dbf32f4347bd85b0da3c55623f2,
         type: 3}
@@ -121,21 +121,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Texture
       value: 
-      objectReference: {fileID: 2800000, guid: 38a82be784f3e4ea5905d94895e5e095, type: 3}
+      objectReference: {fileID: 2800000, guid: 6144fa50c790949b8a3bdc381320eedb, type: 3}
     - target: {fileID: 7306293816248597964, guid: acb60dbf32f4347bd85b0da3c55623f2,
         type: 3}
       propertyPath: slides.Array.size
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7306293816248597964, guid: acb60dbf32f4347bd85b0da3c55623f2,
         type: 3}
       propertyPath: slides.Array.data[0].Image
       value: 
-      objectReference: {fileID: 2800000, guid: 38a82be784f3e4ea5905d94895e5e095, type: 3}
+      objectReference: {fileID: 2800000, guid: 6144fa50c790949b8a3bdc381320eedb, type: 3}
+    - target: {fileID: 7306293816248597964, guid: acb60dbf32f4347bd85b0da3c55623f2,
+        type: 3}
+      propertyPath: slides.Array.data[1].Image
+      value: 
+      objectReference: {fileID: 2800000, guid: 6eddcaf6341d7413dbde9bd640c3c707, type: 3}
+    - target: {fileID: 7306293816248597964, guid: acb60dbf32f4347bd85b0da3c55623f2,
+        type: 3}
+      propertyPath: slides.Array.data[1].seconds
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306293816248597964, guid: acb60dbf32f4347bd85b0da3c55623f2,
+        type: 3}
+      propertyPath: slides.Array.data[2].Image
+      value: 
+      objectReference: {fileID: 2800000, guid: 0f191e048553040ecb2cce505e653312, type: 3}
+    - target: {fileID: 7306293816248597964, guid: acb60dbf32f4347bd85b0da3c55623f2,
+        type: 3}
+      propertyPath: slides.Array.data[3].Image
+      value: 
+      objectReference: {fileID: 2800000, guid: b86b15293901d408183ff50905f3cf86, type: 3}
+    - target: {fileID: 7306293816248597964, guid: acb60dbf32f4347bd85b0da3c55623f2,
+        type: 3}
+      propertyPath: slides.Array.data[0].seconds
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306293816248597964, guid: acb60dbf32f4347bd85b0da3c55623f2,
+        type: 3}
+      propertyPath: slides.Array.data[2].seconds
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7306293816248597964, guid: acb60dbf32f4347bd85b0da3c55623f2,
+        type: 3}
+      propertyPath: slides.Array.data[3].seconds
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7306293815538669284, guid: acb60dbf32f4347bd85b0da3c55623f2,
         type: 3}
       propertyPath: m_Texture
       value: 
-      objectReference: {fileID: 2800000, guid: 38a82be784f3e4ea5905d94895e5e095, type: 3}
+      objectReference: {fileID: 2800000, guid: 6144fa50c790949b8a3bdc381320eedb, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acb60dbf32f4347bd85b0da3c55623f2, type: 3}
