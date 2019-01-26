@@ -6,17 +6,14 @@
 // Escape Key: Escapes the mouse lock
 // Mouse click after pressing escape will lock the mouse again
 
-
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class DogController : MonoBehaviour
 {
-    private float speed = 50.0f;
+    public float speed = 50.0f;
     private float stoppingForce = -80.0f;
-    private float maxVelocity = 6.0f;
+    public float maxVelocity = 6.0f;
     private float m_MovX;
     private float m_MovY;
     private Vector3 m_moveHorizontal;
@@ -32,6 +29,12 @@ public class DogController : MonoBehaviour
     private Vector3 previousRotation = Vector3.zero;
 
     private SoundManager SoundManagerInstance;
+
+    private float timer = 0.0f;
+    public float bobbingSpeed = 0.18f;
+    private float bobbingAmount = 0.2f;
+    public float bobbingRotationScale = 0.01f;
+    private float midpoint = 2.0f;
 
     [Header("The Camera the player looks through")]
     public Camera m_Camera;
@@ -101,15 +104,17 @@ public class DogController : MonoBehaviour
             m_Rigid.velocity = m_Rigid.velocity.normalized * maxVelocity;
         }
 
+        BobbingCamera(m_Camera.transform.localRotation, m_velocity, m_MovY, m_MovX);
+
         SoundManagerInstance.SetCurrentWalkingSurface(
-            BroadcastMovementState(previousRotation - m_Rigid.transform.rotation.eulerAngles, m_velocity));
+            FindMovementSurface(previousRotation - m_Rigid.transform.rotation.eulerAngles, m_velocity));
 
         previousRotation = m_Rigid.transform.rotation.eulerAngles;
 
         InternalLockUpdate();
     }
 
-    private WalkingSurfaceTypes BroadcastMovementState(Vector3 Rotation, Vector3 Velocity)
+    private WalkingSurfaceTypes FindMovementSurface(Vector3 Rotation, Vector3 Velocity)
     {
         float traceDistance = 10;
 
@@ -117,8 +122,7 @@ public class DogController : MonoBehaviour
         // otherwise, tell the sound manager that the player stopped
         if (SoundManagerInstance != null)
         {
-            if (/*Rotation.magnitude > 0.01f ||*/
-                Velocity.magnitude > 0.01f)
+            if (Velocity.magnitude > 0.01f)
             {
                 RaycastHit hit;
                 Material m_Material = null;
@@ -145,6 +149,45 @@ public class DogController : MonoBehaviour
         }
 
         return WalkingSurfaceTypes.None;
+    }
+
+    private void BobbingCamera(Quaternion OriginalLookRotation, Vector3 Velocity, float Vertical, float Horizontal)
+    {
+        float waveslice = 0.0f;
+
+        Vector3 localPosition = m_Camera.transform.localPosition;
+        Quaternion localRotation = m_Camera.transform.localRotation;
+
+        if (Velocity.sqrMagnitude < 0.001f)
+        {
+            timer = 0.0f;
+        }
+        else
+        {
+            waveslice = Mathf.Sin(timer);
+            timer = timer + bobbingSpeed;
+            if (timer > Mathf.PI * 2)
+            {
+                timer = timer - (Mathf.PI * 2);
+            }
+        }
+        if (waveslice < -0.0001f || waveslice > 0.0001f)
+        {
+            float translateChange = waveslice * bobbingAmount;
+            float totalAxes = Mathf.Abs(Horizontal) + Mathf.Abs(Vertical);
+            totalAxes = Mathf.Clamp(totalAxes, 0.0f, 1.0f);
+            translateChange = totalAxes * translateChange;
+            localPosition.y = midpoint + translateChange;
+            localRotation.x = OriginalLookRotation.x + (bobbingRotationScale * translateChange);
+        }
+        else
+        {
+            localPosition.y = midpoint;
+            localRotation.x = OriginalLookRotation.x;
+        }
+
+        m_Camera.transform.localPosition = localPosition;
+        m_Camera.transform.localRotation = localRotation;
     }
 
     //controls the locking and unlocking of the mouse
