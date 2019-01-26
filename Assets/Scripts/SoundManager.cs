@@ -1,15 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+public enum WalkingSurfaceTypes
+{
+    None = 0,
+    Grass = 1,
+    InteriorFloor = 2
+}
+
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource efxSource;                   // Drag a reference to the audio source which will play the sound effects.
-    public List<AudioSource> walkingSources;
-    public AudioSource musicSource;                 // Drag a reference to the audio source which will play the music.
+    public List<AudioClip> WalkingOnGrassAudioClips;
+    public List<AudioClip> WalkingOnInteriorFloorsAudioClips;
+    public AudioSource outputWalkingSource;
+
+    public WalkingSurfaceTypes CurrentWalkingSurface = WalkingSurfaceTypes.None;
+
     public static SoundManager instance = null;     // Allows other scripts to call functions from SoundManager.             
     public float lowPitchRange = .95f;              // The lowest a sound effect will be randomly pitched.
-    public float highPitchRange = 1.05f;            // The highest a sound effect will be randomly pitched.
-
+    public float highPitchRange = 1.05f;            // The highest a sound effect will be randomly pitched.             
+    public float lowVolumeRange = .90f;
+    public float highVolumeRange = 1.0f;
 
     void Awake()
     {
@@ -26,34 +37,54 @@ public class SoundManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-
-    // Used to play single sound clips.
-    public void PlaySingle(AudioClip clip)
+    public void Update()
     {
-        // Set the clip of our efxSource audio source to the clip passed in as a parameter.
-        efxSource.clip = clip;
+        if (outputWalkingSource.isPlaying)
+            return;
 
-        // Play the clip.
-        efxSource.Play();
+        switch (CurrentWalkingSurface)
+        {
+            case WalkingSurfaceTypes.Grass:
+                RandomizeSfx(ref outputWalkingSource, WalkingOnGrassAudioClips.ToArray());
+                break;
+            case WalkingSurfaceTypes.InteriorFloor:
+                RandomizeSfx(ref outputWalkingSource, WalkingOnInteriorFloorsAudioClips.ToArray());
+                break;
+            default:
+                // stop playing
+                outputWalkingSource.Stop();
+                break;
+        }
     }
 
+    public void SetCurrentWalkingSurface(WalkingSurfaceTypes value)
+    {
+        CurrentWalkingSurface = value;
+        if (value == WalkingSurfaceTypes.None)
+        {
+            // stop playing walking sound now
+            outputWalkingSource.Stop();
+        }
+    }
 
     // RandomizeSfx chooses randomly between various audio clips and slightly changes their pitch.
-    public void RandomizeSfx(params AudioClip[] clips)
+    public void RandomizeSfx(ref AudioSource outputAudioSource, params AudioClip[] inputClips)
+    {
+        outputAudioSource.clip = RandomClip(inputClips);
+        // Choose a random pitch to play back our clip at between our high and low pitch ranges.
+        outputAudioSource.pitch = RandomFloat(lowPitchRange, highPitchRange);
+        outputAudioSource.volume = RandomFloat(lowVolumeRange, highVolumeRange);
+        outputWalkingSource.Play();
+    }
+
+    private AudioClip RandomClip(params AudioClip[] clips)
     {
         // Generate a random number between 0 and the length of our array of clips passed in.
-        int randomIndex = Random.Range(0, clips.Length);
+        return clips[Random.Range(0, clips.Length)];
+    }
 
-        // Choose a random pitch to play back our clip at between our high and low pitch ranges.
-        float randomPitch = Random.Range(lowPitchRange, highPitchRange);
-
-        // Set the pitch of the audio source to the randomly chosen pitch.
-        efxSource.pitch = randomPitch;
-
-        // Set the clip to the clip at our randomly chosen index.
-        efxSource.clip = clips[randomIndex];
-
-        // Play the clip.
-        efxSource.Play();
+    private float RandomFloat(float lower, float upper)
+    { 
+        return Random.Range(lower, upper);
     }
 }
