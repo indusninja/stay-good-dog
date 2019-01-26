@@ -6,7 +6,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class ItemSpawner : MonoBehaviour
 {
-    public GameObject itemPrefab;
+    public ItemController itemPrefab;
     public bool isGrave = false;
     public ItemSpawner[] itemConnections;
 
@@ -14,8 +14,53 @@ public class ItemSpawner : MonoBehaviour
     private bool propergateSelection = false;
     private Color connectionColor;
 
-    void Start()
+    public ItemController myItem;
+
+    private bool itemActivated = false;
+
+    public void Start()
     {
+        SetupItem();
+    }
+
+    /*
+     * This sets up the instance of the 
+     */ 
+    void SetupItem()
+    {
+        GameObject item = Instantiate(itemPrefab.gameObject, transform.position, transform.rotation, transform) as GameObject;
+        item.transform.parent = transform;
+        myItem = item.GetComponent<ItemController>();
+
+        // Pass over spawner connections to Item
+        // Todo - Change to actual item instances instead of parent spawners of render items
+        myItem.SetItemSpawnerConnections(itemConnections);
+
+        // Deactivate the item instance after setting it up
+        item.SetActive(false);
+    }
+
+    public void RevealItem()
+    {
+        if(!itemActivated)
+        {
+            itemActivated = true;
+            // Activate item
+            myItem.gameObject.SetActive(true);
+            itemActivated = true;
+        }
+    }
+
+    // Returns list of spawners connections 
+    public ItemSpawner[] GetConnections()
+    {
+        return itemConnections;
+    }
+
+    // Returns connected item instance (real rednered item)
+    public ItemController GetMyConnectedItem()
+    {
+        return myItem;
     }
 
     private void Update()
