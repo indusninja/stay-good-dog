@@ -114,5 +114,4 @@ public class DogController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-
 }
