@@ -10,13 +10,14 @@ public class ItemSpawner : MonoBehaviour
     public bool isGrave = false;
     public ItemSpawner[] itemConnections;
 
+    public ItemController myItem;
+
     private bool isSelected = false;
     private bool propergateSelection = false;
     private Color connectionColor;
-
-    public ItemController myItem;
-
     private bool itemActivated = false;
+
+    private bool illegalConnection = false;
 
     public void Start()
     {
@@ -25,24 +26,27 @@ public class ItemSpawner : MonoBehaviour
 
     /*
      * This sets up the instance of the 
-     */ 
+     */
     void SetupItem()
     {
-        GameObject item = Instantiate(itemPrefab.gameObject, transform.position, transform.rotation, transform) as GameObject;
-        item.transform.parent = transform;
-        myItem = item.GetComponent<ItemController>();
+        if (itemPrefab)
+        {
+            GameObject item = Instantiate(itemPrefab.gameObject, transform.position, transform.rotation, transform) as GameObject;
+            item.transform.parent = transform;
+            myItem = item.GetComponent<ItemController>();
 
-        // Pass over spawner connections to Item
-        // Todo - Change to actual item instances instead of parent spawners of render items
-        myItem.SetItemSpawnerConnections(itemConnections);
+            // Pass over spawner connections to Item
+            // Todo - Change to actual item instances instead of parent spawners of render items
+            myItem.SetItemSpawnerConnections(itemConnections);
 
-        // Deactivate the item instance after setting it up
-        item.SetActive(false);
+            // Deactivate the item instance after setting it up
+            item.SetActive(false);
+        }
     }
 
     public void RevealItem()
     {
-        if(!itemActivated)
+        if (!itemActivated)
         {
             itemActivated = true;
             // Activate item
@@ -77,20 +81,31 @@ public class ItemSpawner : MonoBehaviour
         if (isSelected != Selection.Contains(gameObject))
         {
             isSelected = Selection.Contains(gameObject);
-            PropergateSelection(isSelected);
+            PropergateSelection(isSelected, gameObject);
         }
     }
 
-    public void PropergateSelection(bool propergate)
+    public void PropergateSelection(bool propergate, GameObject originConnection)
     {
-        connectionColor = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+        illegalConnection = false;
         propergateSelection = propergate;
+
+        // Try to prevent bi directional connections loops
+        foreach (ItemSpawner connection in itemConnections)
+        {
+            if (connection && originConnection == connection.gameObject)
+            {
+                illegalConnection = true;
+                Debug.LogError("Connections are illegally pointing to eachother");
+                return;
+            }
+        }
 
         foreach (ItemSpawner connection in itemConnections)
         {
             if (connection != null)
             {
-                connection.PropergateSelection(propergateSelection);
+                connection.PropergateSelection(propergateSelection, originConnection);
             }
         }
     }
@@ -105,9 +120,14 @@ public class ItemSpawner : MonoBehaviour
             for (var i = 0; i < itemConnections.Length; i++)
             {
                 ItemSpawner connection = itemConnections[i];
-                if (connection != null)
+                if (connection != null && connection.gameObject != gameObject)
                 {
-                    Debug.DrawLine(transform.position, connection.transform.position, connectionColor);
+                    Color color = Color.blue;
+                    if (illegalConnection)
+                    {
+                        color = Color.red;
+                    }
+                    Debug.DrawLine(transform.position, connection.transform.position, color);
                 }
             }
         }
