@@ -17,6 +17,15 @@ public class ItemController : MonoBehaviour
     private bool itemActivated = false;
     private bool illegalConnection = false;
 
+    void Awake()
+    {
+        ItemHighlighter highlighter = gameObject.GetComponent<ItemHighlighter>();
+        if(highlighter == null)
+        {
+            gameObject.AddComponent<ItemHighlighter>();
+        }
+    }
+
     public void SniffItem()
     {
         Debug.Log("Sniffed " + this.gameObject.name);
