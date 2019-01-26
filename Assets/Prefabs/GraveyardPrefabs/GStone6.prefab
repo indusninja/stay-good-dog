@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8261813891202599973}
   - component: {fileID: 5142336941207819904}
   - component: {fileID: 2610847657365704026}
+  - component: {fileID: 541561101426897171}
   m_Layer: 0
   m_Name: GStone6
   m_TagString: Untagged
@@ -77,3 +78,17 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!64 &541561101426897171
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6756097339823418347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Convex: 0
+  m_CookingOptions: 14
+  m_Mesh: {fileID: 4300000, guid: 4b2c113bb4a92254da45609e4f52c4de, type: 3}
