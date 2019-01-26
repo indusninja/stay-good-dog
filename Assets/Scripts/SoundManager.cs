@@ -62,11 +62,6 @@ public class SoundManager : MonoBehaviour
     public void SetCurrentWalkingSurface(WalkingSurfaceTypes value)
     {
         CurrentWalkingSurface = value;
-        if (value == WalkingSurfaceTypes.None)
-        {
-            // stop playing walking sound now
-            outputWalkingSource.Stop();
-        }
     }
 
     // RandomizeSfx chooses randomly between various audio clips and slightly changes their pitch.
