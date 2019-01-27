@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028374, g: 0.22571413, b: 0.3069228, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9212,7 +9212,7 @@ MonoBehaviour:
   - {fileID: 1356470947}
   isGrave: 0
   isCorrectGrave: 0
-  highlightConnectionsForNSeconds: 5
+  highlightConnectionsForNSeconds: 8
   dogController: {fileID: 0}
 --- !u!114 &650768320
 MonoBehaviour:
@@ -26164,6 +26164,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: dc07bd85088680f428d206bf0b13c10c, type: 2}
+    - target: {fileID: 804241381, guid: 278ec9d473e7f43b99c8272f718e89cc, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5203018077165643752, guid: 278ec9d473e7f43b99c8272f718e89cc,
         type: 3}
       propertyPath: deadDogMaterial
