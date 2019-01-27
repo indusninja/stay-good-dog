@@ -14,6 +14,7 @@ public class SoundManager : MonoBehaviour
     public List<AudioClip> WalkingOnInteriorFloorsAudioClips;
     public List<AudioClip> SniffAudioClips;
     public List<AudioClip> PantingAudioClips;
+    public List<AudioClip> DeathAudioClips;
     public AudioSource outputWalkingSource;
     public AudioSource BreathingSource;
     public AudioSource IdlePantingSource;
@@ -31,6 +32,7 @@ public class SoundManager : MonoBehaviour
     public float IdleBreathingVolume = 0.75f;
     public float WalkingBreathingVolume = 0.25f;
     public float SniffingVolume = 1.0f;
+    public float DeathVolume = 1.0f;
 
     void Awake()
     {
@@ -131,5 +133,22 @@ public class SoundManager : MonoBehaviour
         SingleEventSource.loop = false;
         SingleEventSource.volume = SniffingVolume;
         SingleEventSource.Play();
+    }
+
+    public void Death()
+    {
+        // stop all other dog sounds
+        outputWalkingSource.Stop();
+        BreathingSource.Stop();
+        IdlePantingSource.Stop();
+
+        // play the event sound
+        if (DeathAudioClips.Count != 0)
+        {
+            RandomizeSfx(ref SingleEventSource, 0.98f, 1.0f, DeathAudioClips.ToArray());
+            SingleEventSource.loop = false;
+            SingleEventSource.volume = DeathVolume;
+            SingleEventSource.Play();
+        }
     }
 }

@@ -237,6 +237,9 @@ public class DogController : MonoBehaviour
 
     public void Kill()
     {
+        // play death sound
+        SoundManagerInstance.Death();
+
         // woof woof oouughgjj
         m_Rigid.constraints = RigidbodyConstraints.None;
         gameObject.GetComponent<SphereCollider>().material = deadDogMaterial;
