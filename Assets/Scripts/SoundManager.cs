@@ -12,6 +12,7 @@ public enum GameEvent
 {
     None,
     Death,
+    Win,
     CorrectItem,
     InCorrectItem
 }
@@ -23,8 +24,9 @@ public class SoundManager : MonoBehaviour
     public List<AudioClip> SniffAudioClips;
     public List<AudioClip> PantingAudioClips;
     public List<AudioClip> DeathAudioClips;
+    public List<AudioClip> WinAudioClips;
     public List<AudioClip> CorrectAudioClip;
-    public AudioClip InCorrectAudioClip;
+    public List<AudioClip> InCorrectAudioClip;
     public AudioSource outputWalkingSource;
     public AudioSource BreathingSource;
     public AudioSource IdlePantingSource;
@@ -46,6 +48,10 @@ public class SoundManager : MonoBehaviour
     public float DeathVolume = 1.0f;
 
     private GameEvent NextGameEventToPlay = GameEvent.None;
+
+    public int TotalGameProgression;
+    public int CurrentGameProgression = 0;
+    public List<AudioClip> GameMusicAudioClips;
 
     void Awake()
     {
@@ -95,6 +101,8 @@ public class SoundManager : MonoBehaviour
                     {
                         case GameEvent.Death:
                             break;
+                        case GameEvent.Win:
+                            break;
                         case GameEvent.CorrectItem:
                             RandomizeSfx(ref SingleEventSource, 0.95f, 1.0f, CorrectAudioClip.ToArray());
                             SingleEventSource.loop = false;
@@ -102,7 +110,7 @@ public class SoundManager : MonoBehaviour
                             SingleEventSource.Play();
                             break;
                         case GameEvent.InCorrectItem:
-                            SingleEventSource.clip = InCorrectAudioClip;
+                            RandomizeSfx(ref SingleEventSource, 0.95f, 1.0f, InCorrectAudioClip.ToArray());
                             SingleEventSource.loop = false;
                             SingleEventSource.volume = SniffingVolume;
                             SingleEventSource.Play();
@@ -188,8 +196,29 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void Win()
+    {
+        NextGameEventToPlay = GameEvent.Win;
+
+        // stop all other dog sounds
+        outputWalkingSource.Stop();
+        BreathingSource.Stop();
+        IdlePantingSource.Stop();
+        MusicAudioSource.Stop();
+
+        // play the event sound
+        if (WinAudioClips.Count != 0)
+        {
+            RandomizeSfx(ref SingleEventSource, 0.98f, 1.0f, WinAudioClips.ToArray());
+            SingleEventSource.loop = false;
+            SingleEventSource.volume = DeathVolume;
+            SingleEventSource.Play();
+        }
+    }
+
     public void FoundCorrectItem()
     {
+        CurrentGameProgression++;
         NextGameEventToPlay = GameEvent.CorrectItem;
     }
 

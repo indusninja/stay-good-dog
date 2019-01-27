@@ -257,6 +257,9 @@ public class DogController : MonoBehaviour
 
     public void Win()
     {
+        // play death sound
+        SoundManagerInstance.Win();
+
         StartCoroutine(StartWinCutScene());
     }
 

@@ -147,11 +147,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a88570e60ba838449b68d61d5e46863d, type: 3}
   - {fileID: 8300000, guid: d4cbcf6fda52e2d418f0681b449d69f3, type: 3}
   - {fileID: 8300000, guid: bc503eb2cf98a04438c95dcbe03bad1e, type: 3}
-  DeathAudioClips: []
+  DeathAudioClips:
+  - {fileID: 8300000, guid: 620046bb39db69941a120433d831342c, type: 3}
+  WinAudioClips:
+  - {fileID: 8300000, guid: b3823ffa1e6dffe4a93dbf2310d06bec, type: 3}
   CorrectAudioClip:
   - {fileID: 8300000, guid: 8e1b1f3c3777fa04782d87f9356103eb, type: 3}
   - {fileID: 8300000, guid: 629756b8a884ff64cba9018ef553959e, type: 3}
-  InCorrectAudioClip: {fileID: 0}
+  InCorrectAudioClip:
+  - {fileID: 8300000, guid: 25acab9e2f6d43e4da8c37dbb522322c, type: 3}
   outputWalkingSource: {fileID: 6483301520549093039}
   BreathingSource: {fileID: 7212403227528426311}
   IdlePantingSource: {fileID: 2731204863473200747}
@@ -168,6 +172,16 @@ MonoBehaviour:
   WalkingBreathingVolume: 0.1
   SniffingVolume: 1
   DeathVolume: 1
+  TotalGameProgression: 0
+  CurrentGameProgression: 0
+  GameMusicAudioClips:
+  - {fileID: 8300000, guid: 448d8f3eb31700d418f6dda345bdcbee, type: 3}
+  - {fileID: 8300000, guid: a7c35c9e6a469a24b8e5020d7d560fe6, type: 3}
+  - {fileID: 8300000, guid: e494c175d0f2b774fb2558a7213c584d, type: 3}
+  - {fileID: 8300000, guid: f82ee2280f6056a499306f4017a9d1cf, type: 3}
+  - {fileID: 8300000, guid: 9b46aee6eb5b8db4c810d296f513b580, type: 3}
+  - {fileID: 8300000, guid: c243d0043d99eb94ca39f34b3be7b042, type: 3}
+  - {fileID: 8300000, guid: cae3be610d1097f458df808398fb4456, type: 3}
 --- !u!1 &3087981723744514459
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,6 +678,8 @@ MonoBehaviour:
   maxVelocity: 6
   bobbingSpeed: 0.18
   bobbingRotationScale: 0.01
+  failCutScene: {fileID: 0}
+  winCutScene: {fileID: 0}
   m_Camera: {fileID: 5203018077197980867}
   deadDogMaterial: {fileID: 0}
 --- !u!114 &2728097305227517319
@@ -913,7 +929,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: c243d0043d99eb94ca39f34b3be7b042, type: 3}
+  m_audioClip: {fileID: 8300000, guid: cae3be610d1097f458df808398fb4456, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.7
   m_Pitch: 1
