@@ -254,8 +254,8 @@ public class DogController : MonoBehaviour
         gameObject.GetComponent<SphereCollider>().material = deadDogMaterial;
         isDead = true;
 
-        StartCoroutine(FadeToBlack());
-        //StartCoroutine(StartFailCutScene());
+        //StartCoroutine(FadeToBlack());
+        StartCoroutine(StartFailCutScene());
     }
 
     public void Win()
@@ -268,6 +268,7 @@ public class DogController : MonoBehaviour
 
     IEnumerator FadeToBlack()
     {
+        fadeScript.SetBlackToClear();
         fadeScript.BlackFadeIn = true;
         yield return new WaitForSeconds(5f);
         fadeScript.BlackFadeIn = false;
