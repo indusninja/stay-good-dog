@@ -18,9 +18,18 @@ public class ItemController : MonoBehaviour
     private bool itemActivated = false;
     private bool illegalConnection = false;
 
+    private SoundManager SoundManagerInstance = null;
+
     void Awake()
     {
         Highlightable highlighter = gameObject.GetComponent<Highlightable>();
+
+        // get reference to the sound manager
+        DogController[] foundDogControllers = FindObjectsOfType<DogController>();
+        if (foundDogControllers.Length > 0)
+        {
+            SoundManagerInstance = foundDogControllers[0].GetComponentInChildren<SoundManager>();
+        }
     }
 
     public void SniffItem()
@@ -39,6 +48,9 @@ public class ItemController : MonoBehaviour
         else
         {
             Debug.Log("Sniffed " + this.gameObject.name);
+            // play sniff sound
+            SoundManagerInstance.Sniff();
+            // signal highlithing for the item
             foreach (ItemController item in connectedItems)
             {
                 item.gameObject.GetComponent<Highlightable>().HighlightForNSeconds(6f);

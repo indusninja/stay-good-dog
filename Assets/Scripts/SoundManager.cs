@@ -12,7 +12,12 @@ public class SoundManager : MonoBehaviour
 {
     public List<AudioClip> WalkingOnGrassAudioClips;
     public List<AudioClip> WalkingOnInteriorFloorsAudioClips;
+    public List<AudioClip> SniffAudioClips;
+    public List<AudioClip> PantingAudioClips;
     public AudioSource outputWalkingSource;
+    public AudioSource BreathingSource;
+    public AudioSource IdlePantingSource;
+    public AudioSource SingleEventSource;
 
     public WalkingSurfaceTypes CurrentWalkingSurface = WalkingSurfaceTypes.None;
 
@@ -23,6 +28,9 @@ public class SoundManager : MonoBehaviour
     public float highGrassPitchRange = .95f;            // The highest a sound effect will be randomly pitched.           
     public float lowVolumeRange = .90f;
     public float highVolumeRange = 1.0f;
+    public float IdleBreathingVolume = 0.75f;
+    public float WalkingBreathingVolume = 0.25f;
+    public float SniffingVolume = 1.0f;
 
     void Awake()
     {
@@ -41,21 +49,49 @@ public class SoundManager : MonoBehaviour
 
     public void Update()
     {
-        if (outputWalkingSource.isPlaying)
-            return;
-
         switch (CurrentWalkingSurface)
         {
             case WalkingSurfaceTypes.Grass:
-                RandomizeSfx(ref outputWalkingSource, lowGrassPitchRange, highGrassPitchRange, WalkingOnGrassAudioClips.ToArray());
+                if (!outputWalkingSource.isPlaying)
+                {
+                    RandomizeSfx(ref outputWalkingSource, lowGrassPitchRange, highGrassPitchRange, WalkingOnGrassAudioClips.ToArray());
+                    outputWalkingSource.Play();
+                }
+                PlayWalkingBreathingInLoop();
                 break;
             case WalkingSurfaceTypes.InteriorFloor:
-                RandomizeSfx(ref outputWalkingSource, lowPitchRange, highPitchRange, WalkingOnInteriorFloorsAudioClips.ToArray());
+                if (!outputWalkingSource.isPlaying)
+                {
+                    RandomizeSfx(ref outputWalkingSource, lowPitchRange, highPitchRange, WalkingOnInteriorFloorsAudioClips.ToArray());
+                    outputWalkingSource.Play();
+                }
+                PlayWalkingBreathingInLoop();
                 break;
             default:
-                // stop playing
+                // stop playing walking sound
                 outputWalkingSource.Stop();
+                // stop playing running breathing sound
+                BreathingSource.Stop();
+                // evaluate and play idle panting sounds
+                if (!IdlePantingSource.isPlaying && 
+                    !SingleEventSource.isPlaying)
+                {
+                    RandomizeSfx(ref IdlePantingSource, 0.95f, 1.0f, PantingAudioClips.ToArray());
+                    IdlePantingSource.volume = IdleBreathingVolume;
+                    IdlePantingSource.Play();
+                }
                 break;
+        }
+    }
+
+    private void PlayWalkingBreathingInLoop()
+    {
+        // play the breathing loop while running
+        if (!BreathingSource.isPlaying)
+        {
+            BreathingSource.volume = WalkingBreathingVolume;
+            BreathingSource.loop = true;
+            BreathingSource.Play();
         }
     }
 
@@ -71,7 +107,6 @@ public class SoundManager : MonoBehaviour
         // Choose a random pitch to play back our clip at between our high and low pitch ranges.
         outputAudioSource.pitch = RandomFloat(lowerLimit, upperLimit);
         outputAudioSource.volume = RandomFloat(lowVolumeRange, highVolumeRange);
-        outputWalkingSource.Play();
     }
 
     private AudioClip RandomClip(params AudioClip[] clips)
@@ -83,5 +118,18 @@ public class SoundManager : MonoBehaviour
     private float RandomFloat(float lower, float upper)
     { 
         return Random.Range(lower, upper);
+    }
+
+    public void Sniff()
+    {
+        // stop both breathing sounds
+        BreathingSource.Stop();
+        IdlePantingSource.Stop();
+
+        // play the event sound
+        RandomizeSfx(ref SingleEventSource, 0.98f, 1.0f, SniffAudioClips.ToArray());
+        SingleEventSource.loop = false;
+        SingleEventSource.volume = SniffingVolume;
+        SingleEventSource.Play();
     }
 }
