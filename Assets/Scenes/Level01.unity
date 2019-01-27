@@ -14436,7 +14436,7 @@ MonoBehaviour:
   - {fileID: 526813654}
   isGrave: 0
   isCorrectGrave: 0
-  highlightConnectionsForNSeconds: 10
+  highlightConnectionsForNSeconds: 20
 --- !u!114 &1004063092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28638,7 +28638,7 @@ MonoBehaviour:
   - {fileID: 25827623}
   isGrave: 0
   isCorrectGrave: 0
-  highlightConnectionsForNSeconds: 13
+  highlightConnectionsForNSeconds: 20
 --- !u!114 &2054937656
 MonoBehaviour:
   m_ObjectHideFlags: 0
