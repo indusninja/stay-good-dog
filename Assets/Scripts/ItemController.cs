@@ -10,6 +10,7 @@ public class ItemController : MonoBehaviour
     public ItemController[] connectedItems;
 
     public bool isGrave = false;
+    public bool isCorrectGrave = false;
 
     private bool isSelected = false;
     private bool propergateSelection = false;
@@ -20,18 +21,28 @@ public class ItemController : MonoBehaviour
     void Awake()
     {
         Highlightable highlighter = gameObject.GetComponent<Highlightable>();
-        //if (highlighter == null)
-        //{
-        //    gameObject.AddComponent<ItemHighlighter>();
-        //}
     }
 
     public void SniffItem()
     {
-        Debug.Log("Sniffed " + this.gameObject.name);
-        foreach (ItemController item in connectedItems)
+        if (isGrave)
         {
-            item.gameObject.GetComponent<Highlightable>().HighlightForNSeconds(6f);
+            if(isCorrectGrave)
+            {
+                Debug.Log("What a good boy, you found the grave");
+            }
+            else
+            {
+                Debug.Log("Just a crap dog at the wrong grave");
+}
+        }
+        else
+        {
+            Debug.Log("Sniffed " + this.gameObject.name);
+            foreach (ItemController item in connectedItems)
+            {
+                item.gameObject.GetComponent<Highlightable>().HighlightForNSeconds(6f);
+            }
         }
     }
 
@@ -91,7 +102,7 @@ public class ItemController : MonoBehaviour
      */
     void RenderDebugLines()
     {
-        if(connectedItems == null)
+        if (connectedItems == null)
         {
             return;
         }

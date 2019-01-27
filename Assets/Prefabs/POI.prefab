@@ -189,7 +189,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 0.972549, g: 0.972549, b: 0.972549, a: 1}
-      maxColor: {r: 0.9150943, g: 0.09157678, b: 0.056114297, a: 0.09019608}
+      maxColor: {r: 1, g: 0, b: 0.8579731, a: 0.09019608}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1235,8 +1235,8 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 0}
-        key1: {r: 1, g: 0.051886797, b: 0.19067653, a: 0.5764706}
-        key2: {r: 1, g: 1, b: 1, a: 0}
+        key1: {r: 1, g: 0, b: 0.93384504, a: 1}
+        key2: {r: 1, g: 1, b: 1, a: 0.37254903}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
@@ -1251,7 +1251,7 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 4024
+        atime1: 4433
         atime2: 65535
         atime3: 65535
         atime4: 0
@@ -4623,3 +4623,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   connectedItems: []
   isGrave: 0
+  isCorrectGrave: 0
