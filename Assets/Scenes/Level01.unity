@@ -16721,7 +16721,7 @@ MonoBehaviour:
   - {fileID: 1356470947}
   isGrave: 0
   isCorrectGrave: 0
-  highlightConnectionsForNSeconds: 8
+  highlightConnectionsForNSeconds: 15
   dogController: {fileID: 0}
 --- !u!114 &1182280463
 MonoBehaviour:
@@ -27885,6 +27885,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 627829174}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1958618970
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958618969}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1.32, z: 4.964627}
+  m_Center: {x: 0, y: 0.55, z: 2.144117}
 --- !u!114 &1958618972
 MonoBehaviour:
   m_ObjectHideFlags: 0
