@@ -154,9 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17211977b6db5aa4b8da1a4ccf178fcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accelleration: 1000
+  accelleration: 800
   maxSpeed: 10
-  turnForce: 3
+  turnForce: 30
   pathPoints: []
   controller: {fileID: 0}
   materials: []
