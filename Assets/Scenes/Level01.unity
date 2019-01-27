@@ -7745,7 +7745,7 @@ MonoBehaviour:
   - {fileID: 1356470947}
   isGrave: 0
   isCorrectGrave: 0
-  highlightConnectionsForNSeconds: 5
+  highlightConnectionsForNSeconds: 8
   dogController: {fileID: 0}
 --- !u!114 &555090124
 MonoBehaviour:
