@@ -8,6 +8,14 @@ public enum WalkingSurfaceTypes
     InteriorFloor = 2
 }
 
+public enum GameEvent
+{
+    None,
+    Death,
+    CorrectItem,
+    InCorrectItem
+}
+
 public class SoundManager : MonoBehaviour
 {
     public List<AudioClip> WalkingOnGrassAudioClips;
@@ -15,6 +23,8 @@ public class SoundManager : MonoBehaviour
     public List<AudioClip> SniffAudioClips;
     public List<AudioClip> PantingAudioClips;
     public List<AudioClip> DeathAudioClips;
+    public List<AudioClip> CorrectAudioClip;
+    public AudioClip InCorrectAudioClip;
     public AudioSource outputWalkingSource;
     public AudioSource BreathingSource;
     public AudioSource IdlePantingSource;
@@ -34,6 +44,8 @@ public class SoundManager : MonoBehaviour
     public float WalkingBreathingVolume = 0.25f;
     public float SniffingVolume = 1.0f;
     public float DeathVolume = 1.0f;
+
+    private GameEvent NextGameEventToPlay = GameEvent.None;
 
     void Awake()
     {
@@ -76,12 +88,32 @@ public class SoundManager : MonoBehaviour
                 // stop playing running breathing sound
                 BreathingSource.Stop();
                 // evaluate and play idle panting sounds
-                if (!IdlePantingSource.isPlaying && 
+                if (!IdlePantingSource.isPlaying &&
                     !SingleEventSource.isPlaying)
                 {
-                    RandomizeSfx(ref IdlePantingSource, 0.95f, 1.0f, PantingAudioClips.ToArray());
-                    IdlePantingSource.volume = IdleBreathingVolume;
-                    IdlePantingSource.Play();
+                    switch (NextGameEventToPlay)
+                    {
+                        case GameEvent.Death:
+                            break;
+                        case GameEvent.CorrectItem:
+                            RandomizeSfx(ref SingleEventSource, 0.95f, 1.0f, CorrectAudioClip.ToArray());
+                            SingleEventSource.loop = false;
+                            SingleEventSource.volume = SniffingVolume;
+                            SingleEventSource.Play();
+                            break;
+                        case GameEvent.InCorrectItem:
+                            SingleEventSource.clip = InCorrectAudioClip;
+                            SingleEventSource.loop = false;
+                            SingleEventSource.volume = SniffingVolume;
+                            SingleEventSource.Play();
+                            break;
+                        case GameEvent.None:
+                            RandomizeSfx(ref IdlePantingSource, 0.95f, 1.0f, PantingAudioClips.ToArray());
+                            IdlePantingSource.volume = IdleBreathingVolume;
+                            IdlePantingSource.Play();
+                            break;
+                    }
+                    NextGameEventToPlay = GameEvent.None;
                 }
                 break;
         }
@@ -138,6 +170,8 @@ public class SoundManager : MonoBehaviour
 
     public void Death()
     {
+        NextGameEventToPlay = GameEvent.Death;
+
         // stop all other dog sounds
         outputWalkingSource.Stop();
         BreathingSource.Stop();
@@ -152,5 +186,15 @@ public class SoundManager : MonoBehaviour
             SingleEventSource.volume = DeathVolume;
             SingleEventSource.Play();
         }
+    }
+
+    public void FoundCorrectItem()
+    {
+        NextGameEventToPlay = GameEvent.CorrectItem;
+    }
+
+    public void FoundInCorrectItem()
+    {
+        NextGameEventToPlay = GameEvent.InCorrectItem;
     }
 }

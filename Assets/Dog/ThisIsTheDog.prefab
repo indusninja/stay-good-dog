@@ -148,6 +148,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d4cbcf6fda52e2d418f0681b449d69f3, type: 3}
   - {fileID: 8300000, guid: bc503eb2cf98a04438c95dcbe03bad1e, type: 3}
   DeathAudioClips: []
+  CorrectAudioClip:
+  - {fileID: 8300000, guid: 8e1b1f3c3777fa04782d87f9356103eb, type: 3}
+  - {fileID: 8300000, guid: 629756b8a884ff64cba9018ef553959e, type: 3}
+  InCorrectAudioClip: {fileID: 0}
   outputWalkingSource: {fileID: 6483301520549093039}
   BreathingSource: {fileID: 7212403227528426311}
   IdlePantingSource: {fileID: 2731204863473200747}
