@@ -16,6 +16,6 @@ public class CarSpawner : MonoBehaviour {
 		GameObject car = Instantiate (carPrefab, transform.position, carPrefab.transform.rotation) as GameObject;
 		car.GetComponent<CarController>().SetPathController (pathController);
 		car.GetComponent<CarController> ().StartMovement ();
-		Invoke ("car.GetComponent<CarController> ().StartMovement", 1f);
+		//Invoke ("car.GetComponent<CarController> ().StartMovement", 1f);
 	}
 }

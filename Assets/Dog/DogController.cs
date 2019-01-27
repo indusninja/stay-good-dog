@@ -137,12 +137,15 @@ public class DogController : MonoBehaviour
                 bool IsIndoors = false;
                 if (Physics.Raycast(transform.position, Vector3.down, out hit, traceDistance))
                 {
-                    m_Material = hit.collider.gameObject.GetComponent<Renderer>().material;
-                    if (m_Material != null &&
-                        m_Material.mainTexture != null &&
-                        m_Material.mainTexture.name.ToLower().Contains("apartment"))
-                    {
-                        IsIndoors = true;
+                    Renderer renderer = hit.collider.gameObject.GetComponent<Renderer>();
+                    if(renderer) { 
+                        m_Material = hit.collider.gameObject.GetComponent<Renderer>().material;
+                        if (m_Material != null &&
+                            m_Material.mainTexture != null &&
+                            m_Material.mainTexture.name.ToLower().Contains("apartment"))
+                        {
+                            IsIndoors = true;
+                        }
                     }
                 }
                 if (IsIndoors)
