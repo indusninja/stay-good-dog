@@ -10,6 +10,8 @@ public class Slideshow : MonoBehaviour
     private RawImage bottomImageRenderer;
     private RawImage topImageRenderer;
 
+    public GameObject fadeToGame;
+
     void Start()
     {
         topImageRenderer = transform.GetChild(0).GetComponent<RawImage>();
@@ -37,9 +39,32 @@ public class Slideshow : MonoBehaviour
             topImageRenderer.texture = bottomImageRenderer.texture;
             topImageRenderer.color = Color.white;
             yield return new WaitForSeconds(slides[i].seconds);
+            if(i == slides.Length - 1) {
+                Debug.Log("Length " + i);
+                if(fadeToGame != null)
+                {
+                    StartCoroutine(DisableAfter());
+                    StartCoroutine(FadeToBlack());
+                } 
+            }
         }
-    }  
+    }
+
+    IEnumerator DisableAfter()
+    {
+        yield return new WaitForSeconds(0.8f);
+        gameObject.SetActive(false);
+    }
+
+    IEnumerator FadeToBlack()
+    {
+        fadeToGame.SetActive(true);
+        yield return new WaitForSeconds(4.0f);
+        fadeToGame.SetActive(false);
+    }
 }
+
+
 
 [System.Serializable]
 public struct Slide 
