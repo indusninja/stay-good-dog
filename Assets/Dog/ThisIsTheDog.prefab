@@ -172,6 +172,7 @@ MonoBehaviour:
   WalkingBreathingVolume: 0.1
   SniffingVolume: 1
   DeathVolume: 1
+  MusicVolume: 0.7
   TotalGameProgression: 0
   CurrentGameProgression: 0
   GameMusicAudioClips:
@@ -1149,22 +1150,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 342275985}
     m_Modifications:
-    - target: {fileID: 100002, guid: 37cdec8c26e327c4790ab2f202d00f37, type: 3}
-      propertyPath: m_Name
-      value: DoggoSnout
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 37cdec8c26e327c4790ab2f202d00f37, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 37cdec8c26e327c4790ab2f202d00f37, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 100006, guid: 37cdec8c26e327c4790ab2f202d00f37, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 37cdec8c26e327c4790ab2f202d00f37, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -1220,6 +1205,22 @@ PrefabInstance:
     - target: {fileID: 400002, guid: 37cdec8c26e327c4790ab2f202d00f37, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 37cdec8c26e327c4790ab2f202d00f37, type: 3}
+      propertyPath: m_Name
+      value: DoggoSnout
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 37cdec8c26e327c4790ab2f202d00f37, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 37cdec8c26e327c4790ab2f202d00f37, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 37cdec8c26e327c4790ab2f202d00f37, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 37cdec8c26e327c4790ab2f202d00f37, type: 3}
       propertyPath: m_Layer

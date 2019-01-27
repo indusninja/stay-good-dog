@@ -17,6 +17,13 @@ public enum GameEvent
     InCorrectItem
 }
 
+public enum GameState
+{
+    Playing,
+    Victory,
+    Loss
+}
+
 public class SoundManager : MonoBehaviour
 {
     public List<AudioClip> WalkingOnGrassAudioClips;
@@ -46,12 +53,15 @@ public class SoundManager : MonoBehaviour
     public float WalkingBreathingVolume = 0.25f;
     public float SniffingVolume = 1.0f;
     public float DeathVolume = 1.0f;
+    public float MusicVolume = 0.7f;
 
+    private GameState CurrentGameState = GameState.Playing;
     private GameEvent NextGameEventToPlay = GameEvent.None;
 
     public int TotalGameProgression;
     public int CurrentGameProgression = 0;
     public List<AudioClip> GameMusicAudioClips;
+    private int CurrentMusicIndex = 0;
 
     void Awake()
     {
@@ -70,10 +80,14 @@ public class SoundManager : MonoBehaviour
 
     public void Update()
     {
+        // TODO: figure out what the pace for the game music should be
+        // ManageGameMusic();
+
         switch (CurrentWalkingSurface)
         {
             case WalkingSurfaceTypes.Grass:
-                if (!outputWalkingSource.isPlaying)
+                if (!outputWalkingSource.isPlaying && 
+                    CurrentGameState == GameState.Playing)
                 {
                     RandomizeSfx(ref outputWalkingSource, lowGrassPitchRange, highGrassPitchRange, WalkingOnGrassAudioClips.ToArray());
                     outputWalkingSource.Play();
@@ -81,7 +95,8 @@ public class SoundManager : MonoBehaviour
                 PlayWalkingBreathingInLoop();
                 break;
             case WalkingSurfaceTypes.InteriorFloor:
-                if (!outputWalkingSource.isPlaying)
+                if (!outputWalkingSource.isPlaying && 
+                    CurrentGameState == GameState.Playing)
                 {
                     RandomizeSfx(ref outputWalkingSource, lowPitchRange, highPitchRange, WalkingOnInteriorFloorsAudioClips.ToArray());
                     outputWalkingSource.Play();
@@ -93,44 +108,74 @@ public class SoundManager : MonoBehaviour
                 outputWalkingSource.Stop();
                 // stop playing running breathing sound
                 BreathingSource.Stop();
-                // evaluate and play idle panting sounds
+
+                // evaluate and play sounds related to single audio game events
                 if (!IdlePantingSource.isPlaying &&
                     !SingleEventSource.isPlaying)
                 {
-                    switch (NextGameEventToPlay)
-                    {
-                        case GameEvent.Death:
-                            break;
-                        case GameEvent.Win:
-                            break;
-                        case GameEvent.CorrectItem:
-                            RandomizeSfx(ref SingleEventSource, 0.95f, 1.0f, CorrectAudioClip.ToArray());
-                            SingleEventSource.loop = false;
-                            SingleEventSource.volume = SniffingVolume;
-                            SingleEventSource.Play();
-                            break;
-                        case GameEvent.InCorrectItem:
-                            RandomizeSfx(ref SingleEventSource, 0.95f, 1.0f, InCorrectAudioClip.ToArray());
-                            SingleEventSource.loop = false;
-                            SingleEventSource.volume = SniffingVolume;
-                            SingleEventSource.Play();
-                            break;
-                        case GameEvent.None:
-                            RandomizeSfx(ref IdlePantingSource, 0.95f, 1.0f, PantingAudioClips.ToArray());
-                            IdlePantingSource.volume = IdleBreathingVolume;
-                            IdlePantingSource.Play();
-                            break;
-                    }
-                    NextGameEventToPlay = GameEvent.None;
+                    ManageGameEventAudio();
                 }
                 break;
+        }
+    }
+
+    private void ManageGameEventAudio()
+    {
+        switch (NextGameEventToPlay)
+        {
+            case GameEvent.Death:
+                break;
+            case GameEvent.Win:
+                break;
+            case GameEvent.CorrectItem:
+                RandomizeSfx(ref SingleEventSource, 0.95f, 1.0f, CorrectAudioClip.ToArray());
+                SingleEventSource.loop = false;
+                SingleEventSource.volume = SniffingVolume;
+                SingleEventSource.Play();
+                break;
+            case GameEvent.InCorrectItem:
+                RandomizeSfx(ref SingleEventSource, 0.95f, 1.0f, InCorrectAudioClip.ToArray());
+                SingleEventSource.loop = false;
+                SingleEventSource.volume = SniffingVolume;
+                SingleEventSource.Play();
+                break;
+            case GameEvent.None:
+                if (CurrentGameState == GameState.Playing)
+                {
+                    RandomizeSfx(ref IdlePantingSource, 0.95f, 1.0f, PantingAudioClips.ToArray());
+                    IdlePantingSource.volume = IdleBreathingVolume;
+                    IdlePantingSource.Play();
+                }
+                break;
+        }
+        NextGameEventToPlay = GameEvent.None;
+    }
+
+    private void ManageGameMusic()
+    {
+        if (!MusicAudioSource.isPlaying && CurrentGameState == GameState.Playing)
+        {
+            if (CurrentMusicIndex <= CurrentGameProgression)
+            {
+                CurrentMusicIndex = CurrentGameProgression;
+                if (CurrentMusicIndex >= GameMusicAudioClips.Count)
+                {
+                    CurrentMusicIndex = 0;
+                    CurrentGameProgression = 0;
+                }
+            }
+            MusicAudioSource.clip = GameMusicAudioClips[CurrentMusicIndex];
+            MusicAudioSource.loop = false;
+            MusicAudioSource.volume = MusicVolume;
+            MusicAudioSource.Play();
         }
     }
 
     private void PlayWalkingBreathingInLoop()
     {
         // play the breathing loop while running
-        if (!BreathingSource.isPlaying)
+        if (!BreathingSource.isPlaying && 
+            CurrentGameState == GameState.Playing)
         {
             BreathingSource.volume = WalkingBreathingVolume;
             BreathingSource.loop = true;
@@ -178,6 +223,10 @@ public class SoundManager : MonoBehaviour
 
     public void Death()
     {
+        if (CurrentGameState != GameState.Playing)
+            return;
+
+        CurrentGameState = GameState.Loss;
         NextGameEventToPlay = GameEvent.Death;
 
         // stop all other dog sounds
@@ -198,6 +247,10 @@ public class SoundManager : MonoBehaviour
 
     public void Win()
     {
+        if (CurrentGameState != GameState.Playing)
+            return;
+
+        CurrentGameState = GameState.Victory;
         NextGameEventToPlay = GameEvent.Win;
 
         // stop all other dog sounds
