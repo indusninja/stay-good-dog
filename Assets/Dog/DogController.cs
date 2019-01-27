@@ -6,7 +6,10 @@
 // Escape Key: Escapes the mouse lock
 // Mouse click after pressing escape will lock the mouse again
 
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody))]
 public class DogController : MonoBehaviour
@@ -36,6 +39,9 @@ public class DogController : MonoBehaviour
     private float bobbingAmount = 0.2f;
     public float bobbingRotationScale = 0.01f;
     private float midpoint = 2.0f;
+
+    public GameObject failCutScene;
+    public GameObject winCutScene;
 
     [Header("The Camera the player looks through")]
     public Camera m_Camera;
@@ -138,7 +144,8 @@ public class DogController : MonoBehaviour
                 if (Physics.Raycast(transform.position, Vector3.down, out hit, traceDistance))
                 {
                     Renderer renderer = hit.collider.gameObject.GetComponent<Renderer>();
-                    if(renderer) { 
+                    if (renderer)
+                    {
                         m_Material = hit.collider.gameObject.GetComponent<Renderer>().material;
                         if (m_Material != null &&
                             m_Material.mainTexture != null &&
@@ -244,5 +251,32 @@ public class DogController : MonoBehaviour
         m_Rigid.constraints = RigidbodyConstraints.None;
         gameObject.GetComponent<SphereCollider>().material = deadDogMaterial;
         isDead = true;
+
+        StartCoroutine(StartFailCutScene());
+    }
+
+    public void Win()
+    {
+        StartCoroutine(StartWinCutScene());
+    }
+
+    IEnumerator StartFailCutScene()
+    {
+        yield return new WaitForSeconds(2f);
+        failCutScene.SetActive(true);
+        StartCoroutine(RestartGame());
+    }
+
+    IEnumerator StartWinCutScene()
+    {
+        yield return new WaitForSeconds(2f);
+        failCutScene.SetActive(true);
+        StartCoroutine(RestartGame());
+    }
+
+    IEnumerator RestartGame()
+    {
+        yield return new WaitForSeconds(8f);
+        SceneManager.LoadScene("MainMenu");
     }
 }
