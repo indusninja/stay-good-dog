@@ -5,8 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-   public void LaunchGameScene()
-   {
-       SceneManager.LoadScene("Level01");
-   }
+
+    public void Start()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void LaunchGameScene()
+    {
+        SceneManager.LoadScene("Level01");
+    }
 }
