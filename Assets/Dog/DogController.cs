@@ -53,6 +53,9 @@ public class DogController : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
+        //Set Cursor to not be visible
+        Cursor.visible = false;
+
         m_Rigid = GetComponent<Rigidbody>();
         if (SoundManagerInstance == null)
         {
