@@ -12249,6 +12249,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5203018077165643753, guid: 278ec9d473e7f43b99c8272f718e89cc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5203018077165643751, guid: 278ec9d473e7f43b99c8272f718e89cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12309,6 +12314,12 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 2359
       objectReference: {fileID: 0}
+    - target: {fileID: 5203018077165643752, guid: 278ec9d473e7f43b99c8272f718e89cc,
+        type: 3}
+      propertyPath: deadDogMaterial
+      value: 
+      objectReference: {fileID: 13400000, guid: 7344d365eb96b4f0d9bcc6ff37c3f66a,
+        type: 2}
     - target: {fileID: 804241381, guid: 278ec9d473e7f43b99c8272f718e89cc, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
