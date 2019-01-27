@@ -11,6 +11,7 @@ public class ItemController : MonoBehaviour
 
     public bool isGrave = false;
     public bool isCorrectGrave = false;
+    public float highlightConnectionsForNSeconds = 10f;
 
     private bool isSelected = false;
     private bool propergateSelection = false;
@@ -53,7 +54,7 @@ public class ItemController : MonoBehaviour
             // signal highlithing for the item
             foreach (ItemController item in connectedItems)
             {
-                item.gameObject.GetComponent<Highlightable>().HighlightForNSeconds(6f);
+                item.gameObject.GetComponent<Highlightable>().HighlightForNSeconds(highlightConnectionsForNSeconds);
             }
         }
     }
