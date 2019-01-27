@@ -53,7 +53,7 @@ public class Slideshow : MonoBehaviour
     IEnumerator DisableAfter()
     {
         yield return new WaitForSeconds(0.8f);
-        gameObject.SetActive(false);
+        GetComponent<Canvas>().enabled = false;
     }
 
     IEnumerator FadeToBlack()

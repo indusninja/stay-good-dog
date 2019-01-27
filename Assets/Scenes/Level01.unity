@@ -4337,11 +4337,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1917621966801229439, guid: 352d98a65993e3745bad6d974ee5c494,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9034582287788379466, guid: 352d98a65993e3745bad6d974ee5c494,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4356,6 +4351,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1917621966801229439, guid: 352d98a65993e3745bad6d974ee5c494,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 352d98a65993e3745bad6d974ee5c494, type: 3}
@@ -19958,11 +19958,36 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1659023151042966442, guid: 25985776a48be405c8771d3ddbe9d6d0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1659023151042966443, guid: 25985776a48be405c8771d3ddbe9d6d0,
         type: 3}
       propertyPath: fadeToGame
       value: 
       objectReference: {fileID: 1035180797}
+    - target: {fileID: 1659023151042966443, guid: 25985776a48be405c8771d3ddbe9d6d0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659023151042966444, guid: 25985776a48be405c8771d3ddbe9d6d0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659023151042966445, guid: 25985776a48be405c8771d3ddbe9d6d0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1659023151274727555, guid: 25985776a48be405c8771d3ddbe9d6d0,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 25985776a48be405c8771d3ddbe9d6d0, type: 3}
 --- !u!1001 &1371363018
@@ -26321,6 +26346,32 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5203018077165643752, guid: 278ec9d473e7f43b99c8272f718e89cc,
+        type: 3}
+      propertyPath: deadDogMaterial
+      value: 
+      objectReference: {fileID: 13400000, guid: 7344d365eb96b4f0d9bcc6ff37c3f66a,
+        type: 2}
+    - target: {fileID: 5203018077165643752, guid: 278ec9d473e7f43b99c8272f718e89cc,
+        type: 3}
+      propertyPath: failCutScene
+      value: 
+      objectReference: {fileID: 2105703069}
+    - target: {fileID: 5203018077165643752, guid: 278ec9d473e7f43b99c8272f718e89cc,
+        type: 3}
+      propertyPath: winCutScene
+      value: 
+      objectReference: {fileID: 1226987599}
+    - target: {fileID: 5203018077165643752, guid: 278ec9d473e7f43b99c8272f718e89cc,
+        type: 3}
+      propertyPath: fadeScript
+      value: 
+      objectReference: {fileID: 1132985368}
+    - target: {fileID: 5203018077165643752, guid: 278ec9d473e7f43b99c8272f718e89cc,
+        type: 3}
+      propertyPath: blackFader
+      value: 
+      objectReference: {fileID: 2099198870}
     - target: {fileID: 5203018077165643751, guid: 278ec9d473e7f43b99c8272f718e89cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26376,32 +26427,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5203018077165643752, guid: 278ec9d473e7f43b99c8272f718e89cc,
-        type: 3}
-      propertyPath: deadDogMaterial
-      value: 
-      objectReference: {fileID: 13400000, guid: 7344d365eb96b4f0d9bcc6ff37c3f66a,
-        type: 2}
-    - target: {fileID: 5203018077165643752, guid: 278ec9d473e7f43b99c8272f718e89cc,
-        type: 3}
-      propertyPath: failCutScene
-      value: 
-      objectReference: {fileID: 2105703069}
-    - target: {fileID: 5203018077165643752, guid: 278ec9d473e7f43b99c8272f718e89cc,
-        type: 3}
-      propertyPath: winCutScene
-      value: 
-      objectReference: {fileID: 1226987599}
-    - target: {fileID: 5203018077165643752, guid: 278ec9d473e7f43b99c8272f718e89cc,
-        type: 3}
-      propertyPath: fadeScript
-      value: 
-      objectReference: {fileID: 1132985368}
-    - target: {fileID: 5203018077165643752, guid: 278ec9d473e7f43b99c8272f718e89cc,
-        type: 3}
-      propertyPath: blackFader
-      value: 
-      objectReference: {fileID: 2099198870}
     - target: {fileID: 5203018077197980867, guid: 278ec9d473e7f43b99c8272f718e89cc,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -29529,11 +29554,6 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1917621966801229439, guid: 352d98a65993e3745bad6d974ee5c494,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9034582287788379466, guid: 352d98a65993e3745bad6d974ee5c494,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29548,6 +29568,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 1917621966801229439, guid: 352d98a65993e3745bad6d974ee5c494,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 352d98a65993e3745bad6d974ee5c494, type: 3}
