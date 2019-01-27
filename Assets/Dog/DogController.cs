@@ -43,6 +43,8 @@ public class DogController : MonoBehaviour
     public GameObject failCutScene;
     public GameObject winCutScene;
 
+    public FadeScript fadeScript;
+
     [Header("The Camera the player looks through")]
     public Camera m_Camera;
 
@@ -252,7 +254,8 @@ public class DogController : MonoBehaviour
         gameObject.GetComponent<SphereCollider>().material = deadDogMaterial;
         isDead = true;
 
-        StartCoroutine(StartFailCutScene());
+        StartCoroutine(FadeToBlack());
+        //StartCoroutine(StartFailCutScene());
     }
 
     public void Win()
@@ -261,6 +264,22 @@ public class DogController : MonoBehaviour
         SoundManagerInstance.Win();
 
         StartCoroutine(StartWinCutScene());
+    }
+
+    IEnumerator FadeToBlack()
+    {
+        fadeScript.BlackFadeIn = true;
+        yield return new WaitForSeconds(5f);
+        fadeScript.BlackFadeIn = false;
+        fadeScript.BlackFadeOut = true;
+    }
+
+    IEnumerator FadeToWhite()
+    {
+        fadeScript.WhiteFadeIn = true;
+        yield return new WaitForSeconds(5f);
+        fadeScript.WhiteFadeIn = false;
+        fadeScript.WhiteFadeOut = true;
     }
 
     IEnumerator StartFailCutScene()
@@ -273,7 +292,7 @@ public class DogController : MonoBehaviour
     IEnumerator StartWinCutScene()
     {
         yield return new WaitForSeconds(2f);
-        failCutScene.SetActive(true);
+        winCutScene.SetActive(true);
         StartCoroutine(RestartGame());
     }
 

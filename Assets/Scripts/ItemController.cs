@@ -13,6 +13,8 @@ public class ItemController : MonoBehaviour
     public bool isCorrectGrave = false;
     public float highlightConnectionsForNSeconds = 10f;
 
+    public DogController dogController;
+
     private bool isSelected = false;
     private bool propergateSelection = false;
     private Color connectionColor;
@@ -37,14 +39,16 @@ public class ItemController : MonoBehaviour
     {
         if (isGrave)
         {
-            if(isCorrectGrave)
+            if (isCorrectGrave)
             {
                 Debug.Log("What a good boy, you found the grave");
+                dogController.Win();
             }
             else
             {
                 Debug.Log("Just a crap dog at the wrong grave");
-}
+                dogController.Kill();
+            }
         }
         else
         {
