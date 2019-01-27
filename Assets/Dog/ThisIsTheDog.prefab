@@ -152,6 +152,7 @@ MonoBehaviour:
   BreathingSource: {fileID: 7212403227528426311}
   IdlePantingSource: {fileID: 2731204863473200747}
   SingleEventSource: {fileID: 3056099662704467414}
+  MusicAudioSource: {fileID: 9147058688838399686}
   CurrentWalkingSurface: 0
   lowPitchRange: 0.75
   highPitchRange: 0.85

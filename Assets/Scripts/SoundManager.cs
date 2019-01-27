@@ -19,6 +19,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource BreathingSource;
     public AudioSource IdlePantingSource;
     public AudioSource SingleEventSource;
+    public AudioSource MusicAudioSource;
 
     public WalkingSurfaceTypes CurrentWalkingSurface = WalkingSurfaceTypes.None;
 
@@ -141,6 +142,7 @@ public class SoundManager : MonoBehaviour
         outputWalkingSource.Stop();
         BreathingSource.Stop();
         IdlePantingSource.Stop();
+        MusicAudioSource.Stop();
 
         // play the event sound
         if (DeathAudioClips.Count != 0)
