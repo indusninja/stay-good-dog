@@ -8635,6 +8635,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6698314543963925040, guid: 38dae610fdafe2349ab64894f396bdc3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38dae610fdafe2349ab64894f396bdc3, type: 3}
 --- !u!4 &629086691 stripped
@@ -15958,7 +15963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackImage: {fileID: 2099198872}
-  whiteImage: {fileID: 1577806349}
+  whiteImage: {fileID: 0}
   BlackFadeIn: 0
   BlackFadeOut: 0
   WhiteFadeIn: 0
@@ -22801,78 +22806,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1573068736}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1577806347
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1577806348}
-  - component: {fileID: 1577806350}
-  - component: {fileID: 1577806349}
-  m_Layer: 5
-  m_Name: WhiteImage
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1577806348
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1577806347}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1752113752}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1577806349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1577806347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Texture: {fileID: 0}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
---- !u!222 &1577806350
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1577806347}
-  m_CullTransparentMesh: 0
 --- !u!1 &1588909002 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5607027391302624702, guid: 30a46136dc1b59a408f6d24be91cb43e,
@@ -25272,7 +25205,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1752113752
 RectTransform:
@@ -25286,7 +25219,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 2099198871}
-  - {fileID: 1577806348}
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -26091,6 +26023,11 @@ PrefabInstance:
       propertyPath: fadeScript
       value: 
       objectReference: {fileID: 1132985368}
+    - target: {fileID: 5203018077165643752, guid: 278ec9d473e7f43b99c8272f718e89cc,
+        type: 3}
+      propertyPath: blackFader
+      value: 
+      objectReference: {fileID: 2099198870}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 278ec9d473e7f43b99c8272f718e89cc, type: 3}
 --- !u!4 &1812444637 stripped
@@ -29464,7 +29401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2099198871
 RectTransform:
   m_ObjectHideFlags: 0
