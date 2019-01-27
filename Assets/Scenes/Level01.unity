@@ -3289,6 +3289,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.76708996
       objectReference: {fileID: 0}
+    - target: {fileID: 2270380739012022393, guid: 3c9d9142d3b09834d8b70cf6e0acc5e4,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 62b652f18b092724eb276a9f0798bad3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c9d9142d3b09834d8b70cf6e0acc5e4, type: 3}
 --- !u!4 &256763863 stripped
@@ -7347,7 +7352,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 62b652f18b092724eb276a9f0798bad3, type: 2}
+      objectReference: {fileID: 2100000, guid: 0ff43e65e4f6aa34c86fe2dbf49b7e13, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c9d9142d3b09834d8b70cf6e0acc5e4, type: 3}
 --- !u!114 &526813654 stripped
@@ -13345,7 +13350,7 @@ PrefabInstance:
     - target: {fileID: 8411901708684220041, guid: e691f640fcb3cc24c93b9d9b1385a54c,
         type: 3}
       propertyPath: m_Name
-      value: Roadblock (10)
+      value: Roadblock (12220)
       objectReference: {fileID: 0}
     - target: {fileID: 3845490409430542294, guid: e691f640fcb3cc24c93b9d9b1385a54c,
         type: 3}
@@ -13402,7 +13407,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3593557466114952085, guid: e691f640fcb3cc24c93b9d9b1385a54c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3593557466114952085, guid: e691f640fcb3cc24c93b9d9b1385a54c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e691f640fcb3cc24c93b9d9b1385a54c, type: 3}
 --- !u!4 &914048271 stripped
 Transform:
