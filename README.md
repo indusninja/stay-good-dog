@@ -1,10 +1,12 @@
 # Stay, Good Dog!
-Stay, Good Dog! Is a video game that is all about a friendship between a dog and his owner. You play as the dog, and you must find your way back home to the arms of your owner..
+Stay, Good Dog! Is a video game that is all about a friendship between a dog and his owner. You play as the dog, and you must find your way back home to the arms of your owner.
 
-#Gameplay
+Global Game Jam [link](https://globalgamejam.org/2019/games/stay-good-dog)
+
+# Gameplay
 [![Alt text](https://img.youtube.com/vi/Z_gJ8ROYrlM/0.jpg)](https://www.youtube.com/watch?v=Z_gJ8ROYrlM)
 
-#Credits
+# Credits
 * Dylan Thomson - Project manager and Programmer
 * Oskar Korošec - Programmer
 * Prakash Prasad - Programmer
