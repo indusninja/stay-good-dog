@@ -1,3 +1,4 @@
+![alt text](./Assets/Cutscenes/SadDog_Intro.png)
 # Stay, Good Dog!
 Stay, Good Dog! Is a video game that is all about a friendship between a dog and his owner. You play as the dog, and you must find your way back home to the arms of your owner.
 
@@ -14,3 +15,5 @@ Global Game Jam [link](https://globalgamejam.org/2019/games/stay-good-dog)
 * Oliver Getz Rodahl - Composer
 * Maija Uleberg - 3D artist
 * Terje Ballestad - 2D artist
+
+![alt text](./Assets/Cutscenes/MainMenu/SadDog_MainMenu.png)
